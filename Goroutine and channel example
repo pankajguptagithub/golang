@@ -1,0 +1,61 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	c := make(chan int) // Allocate a channel.
+
+	// Start the sort in a goroutine
+	go func() {
+		fmt.Println("Hello, world")
+		c <- 1 // Send a signal
+		fmt.Println("Goroutine Finished.")
+	}()
+	//<-c // Receive a value from the channel
+	fmt.Println("Program Completed!")
+}
+
+/*
+Output 
+Program Completed!
+
+Here this program doesn't print what's inside go routine because main go routine would not wait for the goroutine to complete. 
+Main function will print line 17 and exit. 
+However, in the given code if we just uncomment line 16, the problem get's solved because we are writing something into channel and 
+receiving it in main so overall it works 
+*/
+// Another variant of the code 
+
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	c := make(chan int) // Allocate a channel.
+	// Start the sort in a goroutine
+	go func() {
+		fmt.Println("Hello, world")
+		c <- 1 // Send a signal
+		fmt.Println("Goroutine Finished.")
+
+	}()
+	time.Sleep(1 * time.Second)
+	fmt.Println("Program Completed!")
+}
+
+/*
+Hello, world
+Program Completed!
+
+Here the line number 44 doesn't get printed because of line no 43. 
+
+1. we are sending data into channel but not receiving it anywhere. So if we interchance line 43 and 44, everything will get printed. 
+2. Or if we add the line "<- c" in the main code then also it works. channel operation (c <- 1) is blocking and the main goroutine isn't reading from the channel
+   This is a blocking operation on an unbuffered channel because there's no buffer space to store the value. As a result, this operation blocks until another goroutine is ready to receive from the channel.
+
+*/
