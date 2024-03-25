@@ -57,16 +57,22 @@ import (
  */
 
 func timeConversion(s string) string {
+   fmt.Println("Input time is ",s)
    var new_hours string
    parts := strings.Split(s,":")
    hours,minutes,seconds := parts[0] , parts[1] , parts[2][:2]
    merridien := parts[2][2:]
     if merridien == "PM" {
+       fmt.Println("Inside PM")
        hours_int ,_ := strconv.Atoi(hours)
        new_hours = strconv.Itoa(hours_int+12)
+       fmt.Println("new hours value is ",new_hours)
    }else if merridien == "AM"{
-       if hours == "12"{
+       fmt.Println("Inside AM")
+       if hours == "12"{           
            new_hours = "00"
+       }else{
+           new_hours = hours
        }
    }
    return fmt.Sprintf("%s:%s:%s",new_hours,minutes,seconds)   
