@@ -138,3 +138,77 @@ func checkError(err error) {
         panic(err)
     }
 }
+
+/*
+Adding another solution here 
+*/
+
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "io"
+    "os"
+    "strconv"
+    "strings"
+)
+
+func bubble_sort(arr []int64){
+    for i:=0;i<len(arr);i++{
+        for j:=0;j+i<len(arr)-1;j++{
+            if arr[j] > arr[j+1]{
+                temp := arr[j+1]
+                arr[j+1] = arr[j]
+                arr[j] = temp
+            }
+        }
+    }      
+}
+func miniMaxSum(arr []int64) {
+    var min_sum, max_sum int64
+    min_sum = 0
+    max_sum = 0
+    bubble_sort(arr)
+    for i:=0;i<len(arr)-1;i++{
+        min_sum += arr[i]
+    }
+    for i:=1;i<len(arr);i++{
+        max_sum += arr[i]
+    }
+    //min_sum = arr[0]+arr[1]+arr[2]+arr[3]
+    //max_sum = arr[1]+arr[2]+arr[3]+arr[4]
+    fmt.Println(min_sum,max_sum)
+}
+
+func main() {
+    reader := bufio.NewReaderSize(os.Stdin, 16 * 1024 * 1024)
+
+    arrTemp := strings.Split(strings.TrimSpace(readLine(reader)), " ")
+
+    var arr []int64
+
+    for i := 0; i < 5; i++ {
+        arrItemTemp, err := strconv.ParseInt(arrTemp[i], 10, 64)
+        checkError(err)
+        arrItem := int64(arrItemTemp)
+        arr = append(arr, arrItem)
+    }
+
+    miniMaxSum(arr)
+}
+
+func readLine(reader *bufio.Reader) string {
+    str, _, err := reader.ReadLine()
+    if err == io.EOF {
+        return ""
+    }
+
+    return strings.TrimRight(string(str), "\r\n")
+}
+
+func checkError(err error) {
+    if err != nil {
+        panic(err)
+    }
+}
