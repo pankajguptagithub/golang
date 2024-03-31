@@ -178,3 +178,29 @@ func checkError(err error) {
         panic(err)
     }
 }
+
+/*
+Above logic which was accepted by Hackerrank was taken from chat gpt after my logic wasn't accepted
+Here's the logic I wrote 
+
+count_apples := 0
+    count_oranges := 0 
+    for i:=0;i<len(apples);i++{
+        fmt.Println("Value of apples is ",apples[i])
+        fmt.Println("Value of a is ",a)
+        fmt.Println("Its position is ",apples[i]+a)
+        if (apples[i] + a) >= s && (apples[i] + a) <= t{
+            count_apples++
+        }        
+    }
+     for i:=0;i<len(oranges);i++{
+        fmt.Println("Value of oranges is ",oranges[i])
+        fmt.Println("Value of b is ",b)
+        fmt.Println("Its position is",oranges[i]+b)
+        if (oranges[i] + b) >= s && (oranges[i] + b) <= t{
+            count_oranges++
+        }        
+    }
+    fmt.Printf("%d\n%d",count_apples,count_oranges)
+
+*/
