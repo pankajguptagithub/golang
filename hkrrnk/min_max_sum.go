@@ -86,6 +86,8 @@ import (
     fmt.Println("Maximum sum is ",max_sum)
    
 }*/
+
+// previous logic is perfectly fine. Instead, better one with only one loop. Only the sum variables needs to be int64 and rest everything else works just fine
 func miniMaxSum(arr []int64) {
     var max_sum int64
     var min_sum int64
